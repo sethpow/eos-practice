@@ -1,5 +1,7 @@
-#ifndef PET_T
-#define PET_T
+#ifndef PET
+#define PET
+
+// Add an action which will allow for table entries to be added to pet table
 
 //  Table Step 1.
 //      to make a table, add c++ attribute
@@ -24,7 +26,7 @@ public:
 
     uint64_t get_id() const { return id; }
     eosio::name get_owner() const { return owner; }
-    eosio::name get_petname() const { return petname; }
+    eosio::name get_pet_name() const { return petname; }
     uint64_t get_age() const { return age; }
     eosio::name get_type() const { return type; }
 
@@ -44,4 +46,4 @@ public:
 //                          name of class which containts the data structure for our table
 typedef eosio::multi_index <"pets"_n, pet_t> pets_table;
 
-#endif //PET_T
+#endif //PET

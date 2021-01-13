@@ -4,6 +4,32 @@
     "types": [],
     "structs": [
         {
+            "name": "addpet",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "pet_name",
+                    "type": "name"
+                },
+                {
+                    "name": "age",
+                    "type": "uint64"
+                },
+                {
+                    "name": "type",
+                    "type": "name"
+                }
+            ]
+        },
+        {
             "name": "greet",
             "base": "",
             "fields": [
@@ -41,6 +67,11 @@
         }
     ],
     "actions": [
+        {
+            "name": "addpet",
+            "type": "addpet",
+            "ricardian_contract": ""
+        },
         {
             "name": "greet",
             "type": "greet",
