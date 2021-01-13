@@ -1,5 +1,5 @@
-#ifndef PET
-#define PET
+#ifndef PET_T
+#define PET_T
 
 // Add an action which will allow for table entries to be added to pet table
 
@@ -46,4 +46,4 @@ public:
 //                          name of class which containts the data structure for our table
 typedef eosio::multi_index <"pets"_n, pet_t> pets_table;
 
-#endif //PET
+#endif //PET_T
