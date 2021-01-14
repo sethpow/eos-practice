@@ -59,3 +59,33 @@ void practice::removepet(uint64_t const id)
 
     pets.erase(pet_iterator);
 }
+
+// secondary indexing; filter pet by id
+void practice::showpet(uint64_t const id)
+{
+    pets_table pets(get_self(), get_self().value);
+    auto pet_iterator = pets.find(id);
+
+    eosio::check(pet_iterator != pets.end(), "The ID you entered does not exist.");
+
+    eosio::print("The pet with ID ", id, " is named ", pet_iterator->get_pet_name(), ".\nIt is a ", pet_iterator->get_age(), " year old ", pet_iterator->get_type(), ".");
+}
+
+// secondary indexing; list all pets owned by specific owner
+void practice::petsownedby(eosio::name const & owner)
+{
+    pets_table pets(get_self(), get_self().value);
+    
+    // before access itr, create indexed version of pets_table sorted by owner
+    //                                  name of index (see typedef in pet.hpp)
+    auto pets_by_owner = pets.get_index<"byowner"_n>();
+
+    // find all pets; cannot use `.find`
+    auto pet_lower = pets_by_owner.lower_bound(owner.value); // gives 1st pet in table list
+    auto pet_upper = pets_by_owner.upper_bound(owner.value); // gives 1st itr in the table after owner.value
+
+    for(auto i = pet_lower; i != pet_upper; ++i)
+    {
+        eosio::print(owner, " owns ", i->get_pet_name(), ". ");
+    }
+}

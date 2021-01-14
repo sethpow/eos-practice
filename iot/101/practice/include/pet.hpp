@@ -26,6 +26,7 @@ public:
 
     uint64_t get_id() const { return id; }
     eosio::name get_owner() const { return owner; }
+    uint64_t get_owner_value() const { return owner.value; }
     eosio::name get_pet_name() const { return petname; }
     uint64_t get_age() const { return age; }
     eosio::name get_type() const { return type; }
@@ -43,7 +44,14 @@ public:
 //  Table Step 3.
 //      Create typedef
 //                          name of table( _n means treat as eosio::name("pets") ),
-//                          name of class which containts the data structure for our table
-typedef eosio::multi_index <"pets"_n, pet_t> pets_table;
+//                                    data structure of table; name of class which containts the data structure for our table
+//                                           secondary indexing
+//                                                            <> is template argument list
+//                                                        args: name by which we will identify this index
+                                                                            // memory function; 3 args:
+                                                                                              // name of data structure we are using,
+                                                                                                     // return type of the const_mem_fun (must be of the format uint64_t or some int variation 64 bits or higher),
+                                                                                                               // reference to name of func which returns a uint64_t of the owner; no args passed (no parenths)
+typedef eosio::multi_index <"pets"_n, pet_t, eosio::indexed_by<"byowner"_n, eosio::const_mem_fun<pet_t, uint64_t, &pet_t::get_owner_value>>> pets_table;
 
 #endif //PET_T

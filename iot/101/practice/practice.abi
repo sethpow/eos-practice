@@ -82,7 +82,27 @@
             ]
         },
         {
+            "name": "petsownedby",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                }
+            ]
+        },
+        {
             "name": "removepet",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "showpet",
             "base": "",
             "fields": [
                 {
@@ -114,8 +134,18 @@
             "ricardian_contract": ""
         },
         {
+            "name": "petsownedby",
+            "type": "petsownedby",
+            "ricardian_contract": ""
+        },
+        {
             "name": "removepet",
             "type": "removepet",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "showpet",
+            "type": "showpet",
             "ricardian_contract": ""
         },
         {
