@@ -4,6 +4,11 @@
     "types": [],
     "structs": [
         {
+            "name": "game",
+            "base": "",
+            "fields": []
+        },
+        {
             "name": "greet",
             "base": "",
             "fields": [
@@ -21,7 +26,15 @@
             "ricardian_contract": ""
         }
     ],
-    "tables": [],
+    "tables": [
+        {
+            "name": "game",
+            "type": "game",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
     "ricardian_clauses": [],
     "variants": []
 }

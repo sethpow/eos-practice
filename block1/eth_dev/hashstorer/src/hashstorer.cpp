@@ -38,11 +38,25 @@ using contract::contract;
           _hashes.find();       find a record
           _hashes.get();
     */
-                            // lambda func args - row to modify; newrecord - abitrary name; how you refer to the row that you're changing inside lambda func
-    _hashes.emplace( user, [&]( auto& newrecord ){
-      newrecord.user = user;
-      newrecord.ipfs_hash = ipfs_hash;
-    });
+
+    // find if record exists first(by PK); modify if does, add if doesnt
+          // itr - points to position in table; end is row after table (doesnt exist)
+    auto hash_itr = _hashes.find( user.value );
+    if( hash_itr == _hashes.end() )
+    {
+      // lambda func args - row to modify; newrecord - abitrary name; how you refer to the row that you're changing inside lambda func
+      _hashes.emplace( user, [&]( auto& newrecord ){
+        newrecord.user = user;
+        newrecord.ipfs_hash = ipfs_hash;
+      });
+    } else
+    {
+      // args- itr pointing to row to modify, payer of RAM, lambda
+      _hashes.modify( hash_itr, user, [&]( auto& record_to_modify ){
+        record_to_modify.ipfs_hash = ipfs_hash;
+      });
+    }
+
   }
 
 private:
