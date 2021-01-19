@@ -4,9 +4,37 @@
     "types": [],
     "structs": [
         {
-            "name": "game",
+            "name": "clear",
             "base": "",
             "fields": []
+        },
+        {
+            "name": "create",
+            "base": "",
+            "fields": [
+                {
+                    "name": "host",
+                    "type": "name"
+                },
+                {
+                    "name": "opponent",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "gameschema",
+            "base": "",
+            "fields": [
+                {
+                    "name": "host",
+                    "type": "name"
+                },
+                {
+                    "name": "opponent",
+                    "type": "name"
+                }
+            ]
         },
         {
             "name": "greet",
@@ -21,6 +49,16 @@
     ],
     "actions": [
         {
+            "name": "clear",
+            "type": "clear",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "create",
+            "type": "create",
+            "ricardian_contract": ""
+        },
+        {
             "name": "greet",
             "type": "greet",
             "ricardian_contract": ""
@@ -28,8 +66,8 @@
     ],
     "tables": [
         {
-            "name": "game",
-            "type": "game",
+            "name": "games",
+            "type": "gameschema",
             "index_type": "i64",
             "key_names": [],
             "key_types": []

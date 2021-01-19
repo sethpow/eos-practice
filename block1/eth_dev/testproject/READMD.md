@@ -1,4 +1,4 @@
-# tictactoe
+# testproject
 
 This example is to demonstrate a basic EOSIO smart contract, including
 
